@@ -3,6 +3,15 @@ sway-atas
 
 A simple application switcher for the sway window manager.
 
+List all open application windows as a simple grid.
+
+![grid](_img/sway-atas_grid.png)
+
+Or display sibling windows of the active application.
+
+![list](_img/sway-atas_list.png)
+
+
 Installation
 --------------------------------------------------------------------------------
 
@@ -31,5 +40,4 @@ Edit `.config/sway/config`, and bind keyboard keys to `swayatas`.
  bindsym Alt+Grave exec ~/.local/bin/sway-atas --list --siblings
  ```
 
- - - -
- Enjoy.
+ 
