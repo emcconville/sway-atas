@@ -116,7 +116,9 @@ void sway_i3_walk_workspace(json_object *node, struct wl_list *list) {
     json_object *name = NULL;
     json_object *children = NULL;
     json_object *child = NULL;
+	json_object *floaters = NULL;
 	size_t child_len = 0;
+	size_t floater_len = 0;
 	size_t idx = 0;
 	const char *type_value = NULL;
 	const char *name_value = NULL;
@@ -124,7 +126,9 @@ void sway_i3_walk_workspace(json_object *node, struct wl_list *list) {
     json_object_object_get_ex(node, "type", &type);
     json_object_object_get_ex(node, "name", &name);
     json_object_object_get_ex(node, "nodes", &children);
+	json_object_object_get_ex(node, "floating_nodes", &floaters);
 	child_len = json_object_array_length(children);
+	floater_len = json_object_array_length(floaters);
     type_value = json_object_get_string(type);
     if (type_value == NULL) {
         return;
@@ -135,6 +139,10 @@ void sway_i3_walk_workspace(json_object *node, struct wl_list *list) {
 			workspace = malloc(sizeof(struct _sway_workspace));
 			workspace->name = strdup(name_value);
 			wl_list_init(&workspace->windows);
+			for (idx= 0; idx < floater_len; ++idx) {
+				child = json_object_array_get_idx(floaters, idx);
+				sway_i3_walk_windows(child, &workspace->windows);
+			}
 			for (idx= 0; idx < child_len; ++idx) {
 				child = json_object_array_get_idx(children, idx);
 				sway_i3_walk_windows(child, &workspace->windows);
