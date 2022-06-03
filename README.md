@@ -33,11 +33,11 @@ cp ./build/sway-atas ~/.local/bin/sway-atas
 Usage & Set-up
 --------------------------------------------------------------------------------
 
-Edit `.config/sway/config`, and bind keyboard keys to `swayatas`.
+Edit `.config/sway/config`, and bind keyboard keys to `sway-atas`.
 
 ```
- bindsym Alt+Tab exec ~/.local/bin/sway-atas
- bindsym Alt+Grave exec ~/.local/bin/sway-atas --list --siblings
- ```
+bindsym Alt+Tab exec ~/.local/bin/sway-atas
+bindsym Alt+Grave exec ~/.local/bin/sway-atas --list --siblings
+```
 
  
