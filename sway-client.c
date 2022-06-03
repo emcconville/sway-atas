@@ -183,7 +183,12 @@ void sway_i3_walk_windows(json_object *node, struct wl_list *list) {
 			if (json_object_is_type(name, json_type_null)) {
 				sw->name = NULL;
 			} else {
-				sw->name = strdup(json_object_get_string(name));
+				value = json_object_get_string(name);
+				if (strlen(value) > 0) {
+					sw->name = strdup(value);
+				} else {
+					sw->name = NULL;
+				}
 			}
 		} else {
 			sw->name = NULL;
